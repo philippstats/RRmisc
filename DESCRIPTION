@@ -1,6 +1,6 @@
 Package: PRmisc
 Title: Misc function for me
-Description: Misc function mainly for my master's thesis and mlr 
+Description: Misc function mainly for my master's thesis and mlr
 Version: 0.01-1
 Depends:
     R (>= 3.2.3),
@@ -11,3 +11,4 @@ LazyData: true
 License: GPL-2
 Maintainer: Philipp J Roesch <philipp.stats@gmail.com>
 Author: Philipp J Roesch [aut, cre]
+RoxygenNote: 5.0.1

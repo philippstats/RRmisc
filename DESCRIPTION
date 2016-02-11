@@ -1,4 +1,4 @@
-Package: PRmisc
+Package: RRmisc
 Title: Misc functions for me
 Description: Misc functions mainly for data wrangling in mlr.  
 Version: 0.01-1

@@ -2,6 +2,9 @@
 #' 
 #' @param task [\code{Task}]
 #' @param size [\code{integer(1)}] Total size of sample.
+#' @import checkmate
+#' @import mlr
+#' @import dplyr
 #' @export
  
 getStratifiedBinaryData = function(task, size = 20L) {
@@ -10,7 +13,7 @@ getStratifiedBinaryData = function(task, size = 20L) {
 
   data = getTaskData(task)
   datasize = getTaskSize(task)
-  target = classif.task$task.desc$target
+  target = task$task.desc$target
   #FIXME: make me nice
   if(length(levels(data[, target])) != 2) stop("target has more or less than 2 factor levels")
 

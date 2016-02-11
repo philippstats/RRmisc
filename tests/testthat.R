@@ -1,4 +1,4 @@
 library(testthat)
-library(PRmisc)
+library(RRmisc)
 
-test_check("PRmisc")
+test_check("RRmisc")

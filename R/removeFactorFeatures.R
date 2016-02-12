@@ -41,7 +41,7 @@ countTaskClassCharacteristics = function(task, threshold = 0L, larger.threshold 
 
 removeFactorFeatures = function(task, n.levels = 32L) {
   assertClass(task, classes = "Task")
-  assertInteger(threshold, lower = 0L, len = 1L)
+  assertInteger(n.levels, lower = 0L, len = 1L)
   
   d = countTaskClassCharacteristics(task, threshold = n.levels, TRUE)[, 1]
   keep = setdiff(getTaskFeatureNames(task), d)

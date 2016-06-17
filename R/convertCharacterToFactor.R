@@ -4,11 +4,12 @@
 #' @import checkmate
 #' 
 #' @export
-#' @example 
+#' @examples 
+#' \dontrun{
 #' data("mpg", package = "ggplot2")
 #' str(mpg)
 #' convertCharacterToFactor(mpg)
-#' str(mpg)
+#' str(mpg)}
 
 convertCharacterToFactor = function(data) {
   assertClass(data, "data.frame")
@@ -17,3 +18,4 @@ convertCharacterToFactor = function(data) {
   data[i] = lapply(data[idx], as.factor)
   data
 }
+

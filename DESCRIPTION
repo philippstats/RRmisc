@@ -1,11 +1,12 @@
 Package: RRmisc
 Title: Roesch's Miscellaneous R Functions
 Description: Misc functions for data wrangling, mainly in mlr.  
-Version: 0.02-1
+Version: 0.01-2
 Imports:
     checkmate,
     mlr,
-    dplyr
+    dplyr,
+    stringr
 Depends: R (>= 3.1.2)
 Suggests: testthat
 LazyData: true

@@ -1,6 +1,7 @@
 # Master's Thesis: Add unique name to experiment result
 
 addUniqueNameMT = function(data) {
+  # FIXME: check
   uniq.name = vector("character", nrow(data))
   for (i in 1:nrow(data)) {
     if (data$algo[i] == "AVE") {

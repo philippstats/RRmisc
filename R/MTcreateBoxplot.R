@@ -1,4 +1,16 @@
-# Master's Thesis: Create Boxplots with scaling or cutting of y axis
+#' MT: Create Boxplots with scaling or cutting of y axis
+#' æ
+#' @param data dataæ
+#' @param metric mlr-metric
+#' @param opp.bound lower or upper bound for y axis depending if metric should 
+#' be minimzed or maximized. 
+#' @param scale scales "log10" or "sqrt" are allowed.
+#' @param main title
+#' @export
+#' @import ggplot2
+#' @import dplyr
+#' @import checkmate 
+#' @import mlr
 
 createBoxplotMT = function(data, metric = mmce, opp.bound = NULL, 
   scale = NULL, main = NULL) {

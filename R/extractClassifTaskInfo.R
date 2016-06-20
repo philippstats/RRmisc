@@ -1,7 +1,8 @@
 #' Extract ClassifTask Info 
 #' 
-#' @importFrom checkmate assertClass
-#' @importFrom plyr count
+#' @import checkmate 
+#' @importFrom dplyr count
+#' @import mlr
 #' @export 
 #' @examples \dontrun{
 #' library(mlr)

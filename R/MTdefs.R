@@ -182,7 +182,7 @@ MTcreateBASELEARNERS = function(task) {
 #' MT: Make Model ultiplexer Setting
 #' @export
 
-MTmakeMM = function() {
+MTcreateMM = function() {
   mm.lrns = list(
     makeLearner("classif.kknn", predict.type = "prob", kernel = "inv", fix.factors.prediction = TRUE),
     makeLearner("classif.nnet", predict.type = "prob", MaxNWts = 35000, fix.factors.prediction = TRUE),

@@ -14,7 +14,7 @@
 #' }
 
 
-extractClassifTaskInfo = function(task) {
+MTextractClassifTaskInfo = function(task) {
   assertClass(task, "ClassifTask")
   id = getTaskId(task)
   id = unlist(strsplit(id, "[.]"))
@@ -23,7 +23,7 @@ extractClassifTaskInfo = function(task) {
   obs = getTaskSize(task)
   feat = data.frame(t(task$task.desc$n.feat))
   target = task$task.desc$target
-  x = count(task$env$data, target)
+  x = dplyr::count(task$env$data, target)
   pos.loc = which(x[, target] == task$task.desc$positive)
   neg.loc = which(x[, target] == task$task.desc$negative)
   obs.pos = x[pos.loc, 2]

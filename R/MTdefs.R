@@ -6,9 +6,10 @@
 #' 
 #' @param task [\code{Task}]\cr
 #'   Used for mtry in randomForest
+#' @import mlr
 #' @export
 
-MTcreateBASELEARNERS = function(task) {
+MTcreateBaselearners = function(task) {
   
   ###############################################################################
   # KNN
@@ -180,6 +181,7 @@ MTcreateBASELEARNERS = function(task) {
 ###############################################################################
 
 #' MT: Make Model ultiplexer Setting
+#' @import mlr
 #' @export
 
 MTcreateMM = function() {
@@ -199,6 +201,7 @@ MTcreateMM = function() {
 #' MT: Make Model Multiplexer Param Set Setting
 #' @param mm Model Multiplexer (from MTmakeMM)
 #' @param task Task 
+#' @import mlr
 #' @export
 
 MTcreateMMPS = function(mm, task) {
@@ -235,7 +238,7 @@ MTcreateMMPS = function(mm, task) {
      makeNumericParam("cost", lower = 2^-12, upper = 2^12),
      makeIntegerParam("degree", lower = 2L, upper = 5L, requires = quote(kernel == "polynomial")),
      makeNumericParam("gamma", lower = 2^(-12), upper = 2^12, requires = quote(kernel == "radial"))
-                               )
+   )
   )
 }
 

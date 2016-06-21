@@ -6,7 +6,7 @@
 #' to name the target if this is not specified in the OpenML data set.
 #' @export
 #' @import mlr
-#' @importFrom OpenML getOMLDataSet
+#' @importFrom OpenML getOMLDataSet convertOMLDataSetToMlr
 #' @importFrom stringr str_replace_all
 
 createTaskFromOML = function(id, min.perc = 0.05, perc = 0.05, na.omit = TRUE) {

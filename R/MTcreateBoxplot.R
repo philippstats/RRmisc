@@ -6,11 +6,11 @@
 #' be minimzed or maximized. 
 #' @param scale scales "log10" or "sqrt" are allowed.
 #' @param main title
-#' @export
 #' @import ggplot2
 #' @import dplyr
 #' @import checkmate 
 #' @import mlr
+#' @export
 
 createBoxplotMT = function(data, metric = mmce, opp.bound = NULL, 
   scale = NULL, main = NULL) {

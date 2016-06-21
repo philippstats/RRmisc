@@ -1,6 +1,10 @@
-# Master's Thesis: Add unique name to experiment result
+#' Master's Thesis: Add unique name to experiment result
+#' 
+#' @param data data
+#' @export
 
-addUniqueNameMT = function(data) {
+
+MTaddUniqueName = function(data) {
   # FIXME: check
   uniq.name = vector("character", nrow(data))
   for (i in 1:nrow(data)) {

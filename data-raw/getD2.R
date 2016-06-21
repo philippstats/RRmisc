@@ -4,11 +4,11 @@ save(adult, file = "adult.RData")
 
 calhousing = tasks[[2]]
 calhousing$task.desc$id = "calhousing"
-save(adult, file = "adult.RData")
+save(calhousing, file = "calhousing.RData")
 
 BNGbreastw = tasks[[3]]
 BNGbreastw$task.desc$id = "BNGbreastw"
-save(adult, file = "adult.RData")
+save(BNGbreastw, file = "BNGbreastw.RData")
 
 Clickpredictionsmall = tasks[[4]]
 Clickpredictionsmall$task.desc$id = "Clickpredictionsmall"

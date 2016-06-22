@@ -53,6 +53,7 @@ MTcreateBaselearners = function(task) {
       id = paste0("nnet.s", grid[i, 1], ".m", grid[i, 2]),
       predict.type = "prob",
       fix.factors.prediction = TRUE,
+      trace = FALSE,
       # parameters
       size = grid[i, 1],
       maxit = grid[i, 2], 

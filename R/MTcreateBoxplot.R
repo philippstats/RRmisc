@@ -10,10 +10,11 @@
 #' @import dplyr
 #' @import checkmate 
 #' @import mlr
+#' @import plotly
 #' @export
 
 createBoxplotMT = function(data, metric = mmce, opp.bound = NULL, 
-  scale = NULL, main = NULL) {
+  scale = NULL, main = NULL, plotly = TRUE) {
   assertClass(data, "data.frame")
   
   to.min = metric$minimize
@@ -22,7 +23,11 @@ createBoxplotMT = function(data, metric = mmce, opp.bound = NULL,
   g = data %>% 
     ggplot() + geom_boxplot(aes_string(x = "uniq.name", y = metric.name)) +
     theme(axis.text.x = element_text(angle=90, vjust=0.5), 
-          axis.title.x = element_blank()) 
+    axis.title.x = element_blank()) + 
+    geom_vline(xintercept = 1.5, color = "black", linetype = "longdash") + 
+    geom_vline(xintercept = 2.5, color = "black", linetype = "longdash") + 
+    geom_vline(xintercept = 5.5, color = "black", linetype = "longdash") + 
+    geom_vline(xintercept = 14.5, color = "black", linetype = "longdash") 
   if (is.null(main)) {
     g = g + ggtitle(data$prob[1])
   } else {
@@ -57,5 +62,9 @@ createBoxplotMT = function(data, metric = mmce, opp.bound = NULL,
     g2 = g2 + coord_cartesian(ylim = c(lower.bound, upper.bound)) 
   } 
   g3 = g2 + geom_hline(aes(yintercept=best.bl.med), col = "red")
-  g3
+  if (plotly) {
+    ggplotly(g3)
+  } else {
+    g3
+  }
 } 

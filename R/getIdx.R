@@ -3,6 +3,7 @@
 #' @param len Index length
 #' @param total.len Total lenfth
 #' @param seed seed
+#' @export
 
 getIdx = function(len, total.len, seed) {
 	set.seed(seed)

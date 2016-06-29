@@ -6,7 +6,7 @@
 æ}
 \usage{
 createBoxplotMT(data, metric = mmce, opp.bound = NULL, scale = NULL,
-  main = NULL)
+  main = NULL, plotly = TRUE)
 }
 \arguments{
 \item{data}{dataæ}

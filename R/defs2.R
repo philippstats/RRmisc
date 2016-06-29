@@ -84,7 +84,7 @@ createBaselearners2 = function(task) {
   ###############################################################################
   # gbm
   
-  n.trees = seq(1000, 2500, length.out = 10)
+  n.trees = as.integer(seq(1000, 2500, length.out = 10))
   interaction.depth = c(1, 2, 5, 10)
   shrinkage = c(0.001, 0.01, 0.1)
   

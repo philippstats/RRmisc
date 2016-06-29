@@ -2,7 +2,7 @@
 # STACKING
 ###############################################################################
 
-#' Create Base Learners 
+#' Create Base Learners 2
 #' 
 #' @param task [\code{Task}]\cr
 #'   Used for mtry in randomForest

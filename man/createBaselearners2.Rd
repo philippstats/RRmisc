@@ -2,7 +2,7 @@
 % Please edit documentation in R/defs2.R
 \name{createBaselearners2}
 \alias{createBaselearners2}
-\title{Create Base Learners}
+\title{Create Base Learners 2}
 \usage{
 createBaselearners2(task)
 }
@@ -11,6 +11,6 @@ createBaselearners2(task)
 Used for mtry in randomForest}
 }
 \description{
-Create Base Learners
+Create Base Learners 2
 }
 

@@ -1,7 +1,7 @@
 Package: RRmisc
 Title: Roesch's Miscellaneous R Functions
 Description: Misc functions for data wrangling, mainly in mlr.  
-Version: 0.01-5
+Version: 0.01-6
 Imports:
     checkmate,
     mlr,

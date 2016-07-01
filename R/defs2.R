@@ -21,7 +21,7 @@ createBaselearners2 = function(task) {
   lrns.knn.rec = vector("list", length = length(k))
   for (i in k) {
     lrns.knn.rec[[which(k == i)]] = makeLearner("classif.kknn", 
-      id = paste0("kknn.rec.", i), 
+      id = paste0("kknn_rec_", i), 
       fix.factors.prediction = TRUE,
       predict.type = "prob",
       kernel = "rectangular", 
@@ -31,7 +31,7 @@ createBaselearners2 = function(task) {
   lrns.knn.inv = vector("list", length = length(k))
   for (i in k) {
     lrns.knn.inv[[which(k == i)]] = makeLearner("classif.kknn", 
-      id = paste0("kknn.inv.", i), 
+      id = paste0("kknn_inv_", i), 
       fix.factors.prediction = TRUE,
       predict.type = "prob",
       kernel = "inv", 
@@ -50,7 +50,7 @@ createBaselearners2 = function(task) {
   lrns.nnet = vector("list", length = grid.length)
   for (i in 1:grid.length) {
     lrns.nnet[[i]] = makeLearner("classif.nnet", 
-      id = paste0("nnet.s", grid[i, 1], ".m", grid[i, 2]),
+      id = paste0("nnet_s", grid[i, 1], "_m", grid[i, 2]),
       predict.type = "prob",
       fix.factors.prediction = TRUE,
       trace = FALSE,
@@ -73,7 +73,7 @@ createBaselearners2 = function(task) {
   lrns.rf = vector("list", length = grid.length)
   for (i in 1:grid.length) {
     lrns.rf[[i]] = makeLearner("classif.randomForest", 
-      id = paste0("rF.t", grid[i, 1], ".m", grid[i, 2]),
+      id = paste0("rF_t", grid[i, 1], "_m", grid[i, 2]),
       predict.type = "prob",
       fix.factors.prediction = TRUE,
       # parameters
@@ -94,7 +94,7 @@ createBaselearners2 = function(task) {
   lrns.gbm = vector("list", length = grid.length)
   for (i in 1:grid.length) {
     lrns.gbm[[i]] = makeLearner("classif.gbm",
-      id = paste0("gbm.t", grid[i, 1], ".i", grid[i, 2], ".s", grid[i, 3]),
+      id = paste0("gbm_t", grid[i, 1], "_i", grid[i, 2], "_s", grid[i, 3]),
       predict.type = "prob",
       fix.factors.prediction = TRUE,
       # parameters
@@ -115,8 +115,8 @@ createBaselearners2 = function(task) {
   # linear 
   lrns.svm.lin = vector("list", length = C.length)
   for (i in seq_along(C)) {
-    lrns.svm.lin[[i]] = makeLearner("classif.svm", 
-      id = paste0("svm.lin.C", C[i]), kernel = "linear", 
+    lrns.svm.lin[[i]] = makeLearner("classifsvm", 
+      id = paste0("svm_lin_C", C[i]), kernel = "linear", 
       predict.type = "prob",
       fix.factors.prediction = TRUE,
       cost = C[i]
@@ -132,7 +132,7 @@ createBaselearners2 = function(task) {
   lrns.svm.poly = vector("list", length = grid.length)
   for (i in 1:grid.length) {
     lrns.svm.poly[[i]] = makeLearner("classif.svm", 
-      id = paste0("svm.poly.C", grid[i, 1], ".d", grid[i, 2]), 
+      id = paste0("svm_poly_C", grid[i, 1], "_d", grid[i, 2]), 
       predict.type = "prob",
       fix.factors.prediction = TRUE,
       kernel = "polynomial", 
@@ -150,7 +150,7 @@ createBaselearners2 = function(task) {
   lrns.svm.rbf = vector("list", length = grid.length)
   for (i in 1:grid.length) {
     lrns.svm.rbf[[i]] = makeLearner("classif.svm", 
-      id = paste0("svm.rad.C", grid[i, 1], ".s", grid[i, 2]), 
+      id = paste0("svm_rad_C", grid[i, 1], "_s", grid[i, 2]), 
       predict.type = "prob",
       fix.factors.prediction = TRUE,
       cost = grid[i, 1], 
@@ -162,11 +162,11 @@ createBaselearners2 = function(task) {
   ###############################################################################
   #
 
-  BASELEARNERS = c(lrns.knn.rec, lrns.knn.inv, #5+5=10
-                   lrns.nnet, #=48
-                   lrns.rf, #=100
-                   lrns.gbm, #=120
-                   lrns.svm.poly, lrns.svm.rbf #22+88=110
+  BASELEARNERS = c(lrns.knn.rec, lrns.knn.inv, 
+                   lrns.nnet, 
+                   lrns.rf, 
+                   lrns.gbm, 
+                   lrns.svm.poly, lrns.svm.rbf 
   )
   
   return(BASELEARNERS)

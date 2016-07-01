@@ -115,7 +115,7 @@ createBaselearners2 = function(task) {
   # linear 
   lrns.svm.lin = vector("list", length = C.length)
   for (i in seq_along(C)) {
-    lrns.svm.lin[[i]] = makeLearner("classifsvm", 
+    lrns.svm.lin[[i]] = makeLearner("classif.svm", 
       id = paste0("svm_lin_C", C[i]), kernel = "linear", 
       predict.type = "prob",
       fix.factors.prediction = TRUE,

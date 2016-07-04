@@ -177,7 +177,7 @@ createMMPS3 = function(mm, task) {
   makeModelMultiplexerParamSet(mm,
    # knn
    classif.kknn = makeParamSet(
-     makeIntegerParam("k", lower = 1, upper = 50)
+     makeIntegerParam("k", lower = 1, upper = 50, default = 3)
    ),
    # nnet
    classif.nnet = makeParamSet(
@@ -198,11 +198,11 @@ createMMPS3 = function(mm, task) {
    # xgb
    classif.xgboost = makeParamSet(
      makeNumericParam("eta", lower = 2^(-7), upper = 2^(-5)),
-     makeIntegerParam("max_depth", lower = 1L, upper = 20),
-     makeIntegerParam("nrounds", lower = 500L, upper = 2500),
+     makeIntegerParam("max_depth", lower = 1L, upper = 20L),
+     makeIntegerParam("nrounds", lower = 500L, upper = 2500L),
      makeNumericParam("colsample_bytree", lower = 0.7, upper = .9),
      makeNumericParam("subsample", lower = 0.7, upper = 0.9)
-   ),
+   )
    # svm
    #classif.svm = makeParamSet(
    #  makeDiscreteParam("kernel", values = c("linear", "polynomial", "radial")),

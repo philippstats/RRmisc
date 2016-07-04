@@ -16,7 +16,7 @@ createBaselearners3 = function(task) {
 
   
   k.max = 100
-  k = as.integer(seq(1, k.max, length.out = 5))
+  k = as.integer(seq(1, k.max, length.out = 10))
   
   lrns.knn.rec = vector("list", length = length(k))
   for (i in k) {
@@ -65,7 +65,7 @@ createBaselearners3 = function(task) {
   # randomForest
   
   ntree = seq(500, 2500, by = 100) 
-  mtry = unique(as.integer(seq(1, getTaskNFeats(task), length.out = 8)))
+  mtry = unique(as.integer(seq(3, getTaskNFeats(task)-1, length.out = 5)))
   
   grid = expand.grid(ntree, mtry)
   grid.length = nrow(grid)
@@ -82,34 +82,60 @@ createBaselearners3 = function(task) {
     )}
   
   ###############################################################################
-  # gbm
+  # 
+  #
+  #n.trees = as.integer(seq(1000, 2500, length.out = 10))
+  #interaction.depth = c(1, 2, 5, 10)
+  #shrinkage = c(0.001, 0.01, 0.1)
+  #
+  #grid = expand.grid(n.trees, interaction.depth, shrinkage)
+  #grid.length = nrow(grid)
+  #
+  #lrns.gbm = vector("list", length = grid.length)
+  #for (i in 1:grid.length) {
+  #  lrns.gbm[[i]] = makeLearner("classif.gbm",
+  #    id = paste0("gbm_t", grid[i, 1], "_i", grid[i, 2], "_s", grid[i, 3]),
+  #    predict.type = "prob",
+  #    fix.factors.prediction = TRUE,
+  #    # parameters
+  #    distribution = "bernoulli",
+  #    n.trees = grid[i, 1],
+  #    interaction.depth = grid[i, 2],
+  #    shrinkage = grid[i, 3]
+  #  )}
+  #
+  ###############################################################################
+  # xgboost
   
-  n.trees = as.integer(seq(1000, 2500, length.out = 10))
-  interaction.depth = c(1, 2, 5, 10)
-  shrinkage = c(0.001, 0.01, 0.1)
+  nrounds = as.integer(seq(500, 2500, length.out = 10))
+  eta = 2^(-7:-5)
+  max_depth = c(1, 5, 8, 20)
+  colsample_bytree =  c(0.8)
+  subsample = c(0.8)
   
-  grid = expand.grid(n.trees, interaction.depth, shrinkage)
+  grid = expand.grid(nrounds, eta, max_depth, colsample_bytree, subsample)
   grid.length = nrow(grid)
   
-  lrns.gbm = vector("list", length = grid.length)
+  lrns.xgboost = vector("list", length = grid.length)
   for (i in 1:grid.length) {
-    lrns.gbm[[i]] = makeLearner("classif.gbm",
-      id = paste0("gbm_t", grid[i, 1], "_i", grid[i, 2], "_s", grid[i, 3]),
+    lrns.xgboost[[i]] = makeLearner("classif.xgboost",
+      id = paste0("xgboost_n", grid[i, 1], "_e", grid[i, 2], "_d", grid[i, 3], "_c", grid[i, 4], "_s", grid[i, 5]),
       predict.type = "prob",
       fix.factors.prediction = TRUE,
       # parameters
-      distribution = "bernoulli",
-      n.trees = grid[i, 1],
-      interaction.depth = grid[i, 2],
-      shrinkage = grid[i, 3]
+      nrounds = grid[i, 1],
+      eta = grid[i, 2],
+      max_depth = grid[i, 3],
+      colsample_bytree = grid[i, 4],
+      subsample = grid[i, 5]
+
     )}
-  
 
 
   BASELEARNERS = c(lrns.knn.rec, lrns.knn.inv, 
                    lrns.nnet, 
                    lrns.rf, 
-                   lrns.xgboot
+                   lrns.xgboost
   )
   
   return(BASELEARNERS)

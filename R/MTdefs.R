@@ -192,10 +192,10 @@ MTcreateMM = function() {
     makeLearner("classif.randomForest", predict.type = "prob", fix.factors.prediction = TRUE),
     makeLearner("classif.gbm", predict.type = "prob", fix.factors.prediction = TRUE),
     #makeLearner("classif.xgboost", predict.type = "prob", fix.factors.prediction = TRUE),
-    makeLearner("classif.svm", predict.type = "prob", fix.factors.prediction = TRUE))
-  
-  #mm.lrns = lapply(mm.lrns, setPredictType, bpt)
+    makeLearner("classif.svm", predict.type = "prob", fix.factors.prediction = TRUE)
+  )
   MM = makeModelMultiplexer(mm.lrns)  
+  
 }
 
 

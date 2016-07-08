@@ -162,8 +162,7 @@ createMM3 = function() {
     #makeLearner("classif.gbm", predict.type = "prob", fix.factors.prediction = TRUE),
     makeLearner("classif.xgboost", predict.type = "prob", fix.factors.prediction = TRUE, colsample_bytree = .8, subsample = .8)
   )
-  #mm.lrns = lapply(mm.lrns, setPredictType, bpt)
-  MM = makeModelMultiplexer(mm.lrns)  
+  makeModelMultiplexer(mm.lrns)  
 }
 
 

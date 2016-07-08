@@ -157,10 +157,10 @@ createBaselearners3 = function(task) {
 createMM3 = function() {
   mm.lrns = list(
     makeLearner("classif.kknn", predict.type = "prob", kernel = "inv", fix.factors.prediction = TRUE),
-    makeLearner("classif.nnet", predict.type = "prob", MaxNWts = 35000, fix.factors.prediction = TRUE),
+    makeLearner("classif.nnet", predict.type = "prob", MaxNWts = 35000, fix.factors.prediction = TRUE, trace = FALSE),
     makeLearner("classif.randomForest", predict.type = "prob", fix.factors.prediction = TRUE),
     #makeLearner("classif.gbm", predict.type = "prob", fix.factors.prediction = TRUE),
-    makeLearner("classif.xgboost", predict.type = "prob", fix.factors.prediction = TRUE)
+    makeLearner("classif.xgboost", predict.type = "prob", fix.factors.prediction = TRUE, colsample_bytree = .8, subsample = .8)
   )
   #mm.lrns = lapply(mm.lrns, setPredictType, bpt)
   MM = makeModelMultiplexer(mm.lrns)  
@@ -199,9 +199,9 @@ createMMPS3 = function(mm, task) {
    classif.xgboost = makeParamSet(
      makeNumericParam("eta", lower = 2^(-7), upper = 2^(-5)),
      makeIntegerParam("max_depth", lower = 1L, upper = 20L),
-     makeIntegerParam("nrounds", lower = 500L, upper = 2500L),
-     makeNumericParam("colsample_bytree", lower = 0.7, upper = .9),
-     makeNumericParam("subsample", lower = 0.7, upper = 0.9)
+     makeIntegerParam("nrounds", lower = 500L, upper = 2500L)#,
+     #makeNumericParam("colsample_bytree", lower = 0.7, upper = .9),
+     #makeNumericParam("subsample", lower = 0.7, upper = 0.9)
    )
    # svm
    #classif.svm = makeParamSet(

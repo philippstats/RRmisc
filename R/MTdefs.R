@@ -188,7 +188,7 @@ MTcreateBaselearners = function(task) {
 MTcreateMM = function() {
   mm.lrns = list(
     makeLearner("classif.kknn", predict.type = "prob", kernel = "inv", fix.factors.prediction = TRUE),
-    makeLearner("classif.nnet", predict.type = "prob", MaxNWts = 35000, fix.factors.prediction = TRUE),
+    makeLearner("classif.nnet", predict.type = "prob", MaxNWts = 35000, fix.factors.prediction = TRUE, trace = FALSE),
     makeLearner("classif.randomForest", predict.type = "prob", fix.factors.prediction = TRUE),
     makeLearner("classif.gbm", predict.type = "prob", fix.factors.prediction = TRUE),
     #makeLearner("classif.xgboost", predict.type = "prob", fix.factors.prediction = TRUE),

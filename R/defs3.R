@@ -118,7 +118,7 @@ createBaselearners3 = function(task) {
   
   lrns.xgboost = vector("list", length = grid.length)
   for (i in 1:grid.length) {
-    lrns.xgboost[[i]] = makeLearner("classif.xgboost",
+    lrns.xgboost[[i]] = makeLearner("classif.xgboost", verbose = 0,
       id = paste0("xgboost_n", grid[i, 1], "_e", grid[i, 2], "_d", grid[i, 3], "_c", grid[i, 4], "_s", grid[i, 5]),
       predict.type = "prob",
       fix.factors.prediction = TRUE,

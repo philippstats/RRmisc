@@ -15,7 +15,7 @@ convertCharacterToFactor = function(data) {
   assertClass(data, "data.frame")
   
   idx = sapply(data, is.character)
-  data[i] = lapply(data[idx], as.factor)
+  data[idx] = lapply(data[idx], as.factor)
   data
 }
 

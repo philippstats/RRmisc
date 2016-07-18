@@ -118,10 +118,10 @@ createBaselearners4 = function(task) {
   nrounds = as.integer(seq(500, 2500, length.out = 10))
   eta = 2^(-7:-5)
   max_depth = c(1, 5, 8, 20)
-  #colsample_bytree =  c(0.8)
-  #subsample = c(0.8)
+  colsample_bytree =  c(0.8)
+  subsample = c(0.8)
   
-  grid = expand.grid(nrounds, eta, max_depth) #, colsample_bytree, subsample)
+  grid = expand.grid(nrounds, eta, max_depth, colsample_bytree, subsample)
   grid.length = nrow(grid)
   
   lrns.xgboost = vector("list", length = grid.length)
@@ -133,9 +133,9 @@ createBaselearners4 = function(task) {
       # parameters
       nrounds = grid[i, 1],
       eta = grid[i, 2],
-      max_depth = grid[i, 3]#,
-      #colsample_bytree = grid[i, 4],
-      #subsample = grid[i, 5]
+      max_depth = grid[i, 3],
+      colsample_bytree = grid[i, 4],
+      subsample = grid[i, 5]
 
     )}
 

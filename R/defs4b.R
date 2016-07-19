@@ -9,7 +9,7 @@
 #' @import mlr
 #' @export
 
-createBaselearners4 = function(task) {
+createBaselearners4b = function(task) {
   
   ###############################################################################
   # KNN
@@ -115,10 +115,10 @@ createBaselearners4 = function(task) {
   ###############################################################################
   # xgboost
   
-  nrounds = as.integer(seq(500, 2500, length.out = 10))
-  eta = 2^(-7:-5)
+  nrounds = as.integer(seq(500, 2500, length.out = 3))
+  eta = 2^(-7:-4)
   max_depth = c(1, 5, 8, 20)
-  colsample_bytree =  c(0.8)
+  colsample_bytree =  c(.7, .8, .9)
   subsample = c(0.8)
   
   grid = expand.grid(nrounds, eta, max_depth, colsample_bytree, subsample)
@@ -127,7 +127,7 @@ createBaselearners4 = function(task) {
   lrns.xgboost = vector("list", length = grid.length)
   for (i in 1:grid.length) {
     lrns.xgboost[[i]] = makeLearner("classif.xgboost", verbose = 0,
-      id = paste0("xgboost_", grid[i, 1], "_", grid[i, 2], "_", grid[i, 3]), # grid[i, 4], grid[i, 5]
+      id = paste0("xgboost_", grid[i, 1], "_", grid[i, 2], "_", grid[i, 3], "_", grid[i, 4]), #, grid[i, 5])
       predict.type = "prob",
       fix.factors.prediction = TRUE,
       # parameters
@@ -162,7 +162,7 @@ createBaselearners4 = function(task) {
 #' @import mlr
 #' @export
 
-createMM4 = function() {
+createMM4b = function() {
   mm.lrns = list(
     makeLearner("classif.kknn", predict.type = "prob", fix.factors.prediction = TRUE),
     makeLearner("classif.nnet", predict.type = "prob", MaxNWts = 35000, fix.factors.prediction = TRUE, trace = FALSE),
@@ -180,7 +180,7 @@ createMM4 = function() {
 #' @import mlr
 #' @export
 
-createMMPS4 = function(mm, task) {
+createMMPS4b = function(mm, task) {
   makeModelMultiplexerParamSet(mm,
    # knn
    classif.kknn = makeParamSet(
@@ -209,10 +209,10 @@ createMMPS4 = function(mm, task) {
    #),
    # xgb
    classif.xgboost = makeParamSet(
-     makeNumericParam("eta", lower = 2^(-7), upper = 2^(-5)),
+     makeNumericParam("eta", lower = 2^(-7), upper = 2^(-4)),
      makeIntegerParam("max_depth", lower = 1L, upper = 20L),
-     makeIntegerParam("nrounds", lower = 500L, upper = 2500L)#,
-     #makeNumericParam("colsample_bytree", lower = 0.7, upper = .9),
+     makeIntegerParam("nrounds", lower = 500L, upper = 2500L),
+     makeNumericParam("colsample_bytree", lower = .7, upper = .9)
      #makeNumericParam("subsample", lower = 0.7, upper = 0.9)
    )
    # svm
